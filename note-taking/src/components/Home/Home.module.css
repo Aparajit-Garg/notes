@@ -46,11 +46,35 @@
     justify-content: center;
     align-items: center;
     background-color: #fefae0;
+    padding: 2rem;
+    width: 400px;
+    height: 260px;
 }
 
-.note_add input {
+.note_add span {
+    font-weight: bold;
+    font-size: 1.2em;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.note_add form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.note_add form:first-child {
+    margin: 1rem 1rem;
     border: none;
     background-color: inherit;
+    border-bottom: 2px solid black;
+    width: 200px;
+}
+
+.note_add input::placeholder {
+
 }
 
 .note_add button {

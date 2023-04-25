@@ -21,9 +21,12 @@ const Home = () => {
 
             <div className={classes.note_add}>
                 <span>Create New Note</span>
-                <input type="text" placeholder="Add Title"></input>
-                <input type="text" placeholder="Details"></input>
-                <button type="submit">Save Note</button>
+                <form>
+                    <input disabled type="text" placeholder="Add Title"></input>
+                    <input disabled type="text" placeholder="Details"></input>
+                    <button type="submit">Save Note</button>
+                </form>
+                
             </div>
         </div>
     );
