@@ -1,9 +1,20 @@
 import React from "react";
 import classes from "./Home.module.css";
 import {Link} from 'react-router-dom';
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Home = () => {
+
+    const submitHandler = (event) => {
+        event.preventDefault();
+
+        toast.warning("Please login first");
+    }
+
+
     return (
+        <>
         <div className={classes.main}>
             <div className={classes.welcome_section}>
                 <span><h2>Welcome to QuickNotes</h2></span>
@@ -21,14 +32,16 @@ const Home = () => {
 
             <div className={classes.note_add}>
                 <span>Create New Note</span>
-                <form>
-                    <input disabled type="text" placeholder="Add Title"></input>
-                    <input disabled type="text" placeholder="Details"></input>
+                <form onSubmit={submitHandler}>
+                    <input className={classes.title} disabled type="text" placeholder="Add Title"></input>
+                    <input disabled className={classes.description} type="text" placeholder="Write something"></input>
                     <button type="submit">Save Note</button>
                 </form>
                 
             </div>
         </div>
+        <ToastContainer />
+        </>
     );
 }
 

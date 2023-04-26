@@ -12,6 +12,18 @@
     justify-content: space-around;
     align-items: center;
     background-color: #fff;
+    animation: fadeInAnimation ease 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .welcome_section {
@@ -43,15 +55,16 @@
 .note_add {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    /* align-items: center; */
     background-color: #fefae0;
-    padding: 2rem;
+    padding: 0rem;
     width: 400px;
     height: 260px;
 }
 
 .note_add span {
+    margin-top: 2rem;
     font-weight: bold;
     font-size: 1.2em;
     text-align: center;
@@ -62,27 +75,50 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 2rem;
+    margin-top: 2.5rem;
+    /* padding: 1rem; */
+    /* padding: 1.5rem; */
 }
 
-.note_add form:first-child {
-    margin: 1rem 1rem;
+.title {
+    /* margin: 1rem 1rem; */
+    border: none;
+    background-color: inherit;
+    border-bottom: 2px solid black;
+    width: 310px;
+    height:1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.title::placeholder {
+    font-size: 1.5em;
+}
+
+.description {
     border: none;
     background-color: inherit;
     border-bottom: 2px solid black;
     width: 200px;
-}
-
-.note_add input::placeholder {
-
+    height: 1.2rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1.5rem;
+    font-size: 1em;
 }
 
 .note_add button {
+    margin-top: 1.9rem;
+    margin-left: auto;
+    margin-right: auto;
     border: none;
     background-color: #6b8e23;
+    font-size: 1.1em;
     color: white;
-    font-weight: bold;
-    font-size: 0.8em;
-    width: 7rem;
-    height: 2rem;
+    width: 6rem;
+    height: 1.8rem;
+}
+
+button:is(:hover, :active) {
+    cursor: pointer;
 }
