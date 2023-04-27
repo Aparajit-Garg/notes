@@ -5,7 +5,7 @@ const Login = () => {
 
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const [signIn, setToggleSignIn] = useState(true);
+    const [signIn, setToggleSignIn] = useState(false);
 
 
     const handleSubmit = (event) => {
@@ -16,23 +16,22 @@ const Login = () => {
         setUserName(event.target.value);
     }
     return (
-        // <div className={classes.header}>
-        <>
+        <div className={classes.header}>
             <div className={classes.main}>
                 <form onSubmit={handleSubmit}>
                     <label>Username</label>
                     <input type="text" placeholder="Enter username" onChange={updateUsername} value={userName} />
                     <label>Password</label>
-                    {/* <input type="password" placeholder="Enter password" onKeyDown={(e) => setPassword(e.target.value)}></input> */}
+                    <input type="password" placeholder="Enter password" onKeyDown={(e) => setPassword(e.target.value)}></input>
                     <button type="submit"> {signIn ? "Sign In" : "Sign Up" }</button>
                 </form>
-                {/* <div className={classes.signUp}>
-                    <p>Don't have an account?</p>
-                    <button>Sign Up</button>
+                <div className={classes.signUp}>
+                    <p>Have an account ?</p>
+                    <button>Sign In</button>
                 </div>
-                <p>( Demo credentials - user: demo@gmail.com | password: 123456 )</p> */}
+                <p className={classes.demo}>( Demo credentials - user: demo@gmail.com | password: 123456 )</p>
             </div>
-        </>
+        </div>
     );
 }
 
