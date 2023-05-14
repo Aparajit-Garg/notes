@@ -5,11 +5,18 @@
     user-select: none;
 }
 
+.complete__page {
+    display: flex;
+    flex-direction: column;
+    width: vw;
+    height: vh;
+}
+
 .main {
     margin-top: 2rem;
     padding: 2rem;
     display:flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     background-color: #fff;
     animation: fadeInAnimation ease 2s;
@@ -60,8 +67,9 @@
     background-color: #fefae0;
     border-radius: 25px;
     padding: 0rem;
-    width: 400px;
+    max-width: 400px;
     height: 260px;
+
 }
 
 .note_add span {
