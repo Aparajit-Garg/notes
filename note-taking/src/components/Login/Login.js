@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import classes from "./Login.module.css";
 import {signInWithEmailAndPassword, createUserWithEmailAndPassword} from "firebase/auth";
 import {auth} from "../../firebase_config";
@@ -11,7 +11,7 @@ const Login = () => {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [signIn, setToggleSignIn] = useState(false);
-    const [loginStatus, setLoginStatus] = useState(notesContext);
+    const [loginStatus, setLoginStatus, ] = useContext(notesContext);
     let navigate = useNavigate();
 
     const handleSubmit = (event) => {
@@ -34,6 +34,7 @@ const Login = () => {
             console.log(user);
             setLoginStatus(true);
             navigate("/");
+            localStorage.setItem("user", user);
             // ...
         })
         .catch((error) => {
@@ -54,6 +55,7 @@ const Login = () => {
             console.log(user);
             setLoginStatus(true);
             navigate("/");
+            localStorage.setItem("user", JSON.stringify(user));
             // ...
         })
         .catch((error) => {
@@ -65,8 +67,11 @@ const Login = () => {
     }
 
     const logOutHandler = () => {
+        console.log(typeof(loginStatus));
         setLoginStatus(false);
+        console.log(loginStatus);
         navigate("/");
+        localStorage.removeItem("user");
     }
 
     return (

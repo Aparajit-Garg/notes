@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import classes from "./NavBar.module.css";
 import {Link} from "react-router-dom"; 
 import { notesContext } from "../../context/context";
 
 
 const NavBar = () => {
-    const [loginStatus, setLoginStatus] = useState(notesContext);
+    const [loginStatus, setLoginStatus] = useContext(notesContext);
     return (
         <div className={classes.main}>
             <div className={classes.title}>
@@ -18,8 +18,8 @@ const NavBar = () => {
                     <span>Home</span>
                 </Link>
                 <Link style={{textDecoration:"none"}} to="/login">
-                    {/* <span>{loginStatus ? "Log Out" : "Sign In"}</span> */}
-                    <span>Sign In</span>
+                    <span>{loginStatus ? "Log Out" : "Sign In"}</span>
+                    {/* <span>Sign In</span> */}
                 </Link>
             </div>
             
