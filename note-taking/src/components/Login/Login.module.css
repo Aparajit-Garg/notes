@@ -11,6 +11,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    animation: fadeInAnimation ease 2s;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .logout__section {
