@@ -12,6 +12,7 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [signIn, setToggleSignIn] = useState(false);
     const [loginStatus, setLoginStatus, ] = useContext(notesContext);
+    const [requiredNotes, setRequiredNotes] = useState({});
     let navigate = useNavigate();
 
     const handleSubmit = (event) => {

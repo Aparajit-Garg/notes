@@ -1,20 +1,45 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import classes from './Notes.module.css';
 import { notesContext } from '../../context/context';
 import TurnedIn from "@mui/icons-material/TurnedIn";
 import TurnedInNot from "@mui/icons-material/TurnedInNot";
+import { db } from '../../firebase_config';
+
 
 const Notes = () => {
-    const [loginStatus, setLoginStatus] = useContext(notesContext);
+    const [loginStatus, setLoginStatus, ,,fetchNotes,] = useContext(notesContext);
+    const [info, setInfo] = useState([]);
 
-    function test() {
-        console.log("loginStatus: ", loginStatus);
+    const Fetchdata = ()=>{
+        db.collection("data").get().then((querySnapshot) => {
+            
+            // Loop through the data and store
+            // it in array to display
+            querySnapshot.forEach(element => {
+                var data = element.data();
+                console.log(data);
+                setInfo(arr => [...arr , data]);
+                 
+            });
+        })
     }
+
+
+    useEffect(() => {
+        fetchNotes();
+        // console.log(info);
+    }, []);
     return (
         <div className={classes.top__level}>
             {loginStatus ? 
             <div className={classes.login__true}>
-                <h1>Here</h1>
+                <span>My Notes</span>
+                <span>Pick a background color for notes</span>
+                <input type="color" list="presetColors" />
+                <></>
+                <span>
+
+                </span>
             </div>
             :
             <div className={classes.login__false}>
