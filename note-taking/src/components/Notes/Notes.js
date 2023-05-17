@@ -10,25 +10,10 @@ const Notes = () => {
     const [loginStatus, setLoginStatus, ,,fetchNotes,] = useContext(notesContext);
     const [info, setInfo] = useState([]);
 
-    const Fetchdata = ()=>{
-        db.collection("data").get().then((querySnapshot) => {
-            
-            // Loop through the data and store
-            // it in array to display
-            querySnapshot.forEach(element => {
-                var data = element.data();
-                console.log(data);
-                setInfo(arr => [...arr , data]);
-                 
-            });
-        })
-    }
-
-
     useEffect(() => {
         fetchNotes();
         // console.log(info);
-    }, []);
+    }, [loginStatus]);
     return (
         <div className={classes.top__level}>
             {loginStatus ? 
