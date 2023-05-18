@@ -95,6 +95,7 @@
     padding: 1rem;
     flex-wrap: wrap;
     max-width: 20rem;
+    border-radius: 10px;
 }
 
 .single__note > span:first-child {

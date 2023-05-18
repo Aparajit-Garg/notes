@@ -3,7 +3,7 @@ import classes from './Notes.module.css';
 import { notesContext } from '../../context/context';
 import TurnedIn from "@mui/icons-material/TurnedIn";
 import TurnedInNot from "@mui/icons-material/TurnedInNot";
-import { db } from '../../firebase_config';
+import { db, doc, deleteDoc } from '../../firebase_config';
 
 
 const Notes = () => {
@@ -17,9 +17,8 @@ const Notes = () => {
     }, [loginStatus]);
 
 
-    const colorChange = (e) => {
-        console.log(e.target.value);
-        document.documentElement.style.setProperty('--notes-background-color', e.target.value);
+    const deleteNote = (event) => {
+
     }
 
     return (
@@ -28,7 +27,8 @@ const Notes = () => {
             <div className={classes.login__true}>
                 <span>My Notes</span>
                 <span>Pick a background color for notes</span>
-                <input type="color" list="presetColors" onChange={colorChange}/>
+                <input type="color" list="presetColors" 
+                    onChange={(e)=>document.documentElement.style.setProperty('--notes-background-color', e.target.value)} />
                 <div className={classes.notes__fetched}>
                     {notesFetched?.map((note) => {
                         console.log("Single note: ", note);
@@ -53,7 +53,7 @@ const Notes = () => {
                                     <button>
                                         Open Editor
                                     </button>
-                                    <button>
+                                    <button onClick={() => deleteNote(note.id)}>
                                         Delete this note
                                     </button>
                                 </span>
