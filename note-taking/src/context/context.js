@@ -7,6 +7,7 @@ export const notesContext = createContext();
 const NotesProvider = (props) => {
 
     const [loginStatus, setLoginStatus] = useState(false);
+    const [loginEmail, setLoginEmail] = useState("");
     const [notesFetched, setNotesFetched] = useState([]);
     const collectionRef = collection(db, "notes");
 
@@ -41,7 +42,9 @@ const NotesProvider = (props) => {
             notesFetched,
             setNotesFetched,
             fetchNotes,
-            addNote
+            addNote,
+            loginEmail,
+            setLoginEmail
         ]}>
             {props.children}
         </notesContext.Provider>

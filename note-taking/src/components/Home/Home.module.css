@@ -100,6 +100,7 @@
     border-bottom: 2px solid black;
     width: 310px;
     height:1.5rem;
+    color: black;
     /* padding: 1rem 2rem; */
     /* margin-left: auto;
     margin-right: auto; */
@@ -119,6 +120,7 @@
     margin-right: auto;
     margin-top: 1.5rem;
     font-size: 1em;
+    color: black;
 }
 
 .note_add button {

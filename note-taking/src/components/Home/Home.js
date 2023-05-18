@@ -1,18 +1,38 @@
-import React from "react";
+import React, {useContext, useState} from "react";
 import classes from "./Home.module.css";
 import {Link} from 'react-router-dom';
 import {ToastContainer, toast} from 'react-toastify';
 import Notes from "../Notes/Notes";
 import 'react-toastify/dist/ReactToastify.css';
+import { notesContext } from "../../context/context";
+import {collection, addDoc, serverTimestamp} from "firebase/firestore";
+import { db } from "../../firebase_config";
+
 
 const Home = () => {
 
-    const submitHandler = (event) => {
+    const [loginStatus, setLoginStatus, , , fetchNotes, , loginEmail, ] = useContext(notesContext);
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+
+    const submitHandler = async (event) => {
         event.preventDefault();
-
-        toast.warning("Please login first");
+        if (!loginStatus)
+            toast.warning("Please login first");
+        else {
+            const response = await addDoc(collection(db, "notes"), {
+                title: title,
+                description: description,
+                createdAt: serverTimestamp(),
+                lastUpdated: serverTimestamp(),
+                bookmarked: false,
+                emailId: loginEmail
+            });
+            console.log("Status of adding new doc: ", response);
+            fetchNotes();
+        }
     }
-
+    console.log("Login status at Home: ", loginStatus);
 
     return (
         <>
@@ -35,8 +55,10 @@ const Home = () => {
                     <div className={classes.note_add}>
                         <span>Create New Note</span>
                         <form onSubmit={submitHandler}>
-                            <input className={classes.title} disabled type="text" placeholder="Add Title"></input>
-                            <input disabled className={classes.description} type="text" placeholder="Write something"></input>
+                            <input className={classes.title} type="text" placeholder="Add Title" disabled={!loginStatus} onChange={(e) => 
+                            setTitle(e.target.value)}></input>
+                            <input disabled={!loginStatus} className={classes.description} type="text" placeholder="Write something"
+                            onChange={(e) => setDescription(e.target.value)}></input>
                             <button type="submit">Save Note</button>
                         </form>
                         

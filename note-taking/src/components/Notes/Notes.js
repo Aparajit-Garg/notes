@@ -34,7 +34,12 @@ const Notes = () => {
                             <div className={classes.single__note} key={note.id}>
                                 <span>
                                     <h2>{value[0].title}</h2>
-                                    <TurnedInNot />
+                                    {
+                                        value[0].bookmarked ?
+                                        <TurnedIn /> :
+                                        <TurnedInNot />
+                                    }
+                                    
                                 </span>
                                 <span> {value[0].description}</span>
                                 <span className={classes.noteEdit__options}>
@@ -45,7 +50,14 @@ const Notes = () => {
                                         Delete this note
                                     </button>
                                 </span>
-                                <span> Last Updated at: {value[0].lastUpdated.toDate()}</span>
+                                <span>
+                                    <span> 
+                                        <strong> Last Updated at: </strong>
+                                    </span>
+                                    <span> 
+                                        {Date(value[0].lastUpdated.seconds*1000)} 
+                                    </span>
+                                </span>
                             </div>
                         );
                     })}

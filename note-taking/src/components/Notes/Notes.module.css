@@ -93,6 +93,8 @@
     gap: 1em;
     background-color: yellow;
     padding: 1rem;
+    flex-wrap: wrap;
+    max-width: 20rem;
 }
 
 .single__note > span:first-child {
@@ -100,7 +102,6 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 20rem;
 }
 
 .single__note > span:nth-child(3) {
@@ -124,4 +125,8 @@
     color: white;
     border: none;
     font-weight: 500;
+}
+
+.single__note > span:nth-child(4) {
+    margin-top: 1em;
 }

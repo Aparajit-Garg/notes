@@ -11,7 +11,7 @@ const Login = () => {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [signIn, setToggleSignIn] = useState(false);
-    const [loginStatus, setLoginStatus, ] = useContext(notesContext);
+    const [loginStatus, setLoginStatus, , , , , loginEmail, setLoginEmail] = useContext(notesContext);
     
     let navigate = useNavigate();
 
@@ -34,6 +34,7 @@ const Login = () => {
             const user = userCredential.user;
             console.log(user);
             setLoginStatus(true);
+            setLoginEmail(userName);
             navigate("/");
             localStorage.setItem("user", user);
             // ...
@@ -43,6 +44,7 @@ const Login = () => {
             const errorMessage = error.message;
             console.log(error);
             setLoginStatus(false);
+            setLoginEmail("");
             // ..
         });
     }
@@ -55,6 +57,7 @@ const Login = () => {
             const user = userCredential.user;
             console.log(user);
             setLoginStatus(true);
+            setLoginEmail(userName);
             navigate("/");
             localStorage.setItem("user", JSON.stringify(user));
             // ...
@@ -64,6 +67,7 @@ const Login = () => {
             const errorMessage = error.message;
             console.log(error);
             setLoginStatus(false);
+            setLoginEmail("");
         });
     }
 
