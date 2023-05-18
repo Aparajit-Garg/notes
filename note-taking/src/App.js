@@ -1,3 +1,4 @@
+import classes from "./App.module.css";
 import Home from "./components/Home/Home.js";
 import NavBar from "./components/NavBar/NavBar.js";
 import Login from "./components/Login/Login.js";

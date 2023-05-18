@@ -30,6 +30,8 @@ const Home = () => {
             });
             console.log("Status of adding new doc: ", response);
             fetchNotes();
+            setTitle("");
+            setDescription("");
         }
     }
     console.log("Login status at Home: ", loginStatus);
@@ -56,8 +58,8 @@ const Home = () => {
                         <span>Create New Note</span>
                         <form onSubmit={submitHandler}>
                             <input className={classes.title} type="text" placeholder="Add Title" disabled={!loginStatus} onChange={(e) => 
-                            setTitle(e.target.value)}></input>
-                            <input disabled={!loginStatus} className={classes.description} type="text" placeholder="Write something"
+                            setTitle(e.target.value)} value={title}></input>
+                            <input disabled={!loginStatus} className={classes.description} type="text" placeholder="Write something" value={description}
                             onChange={(e) => setDescription(e.target.value)}></input>
                             <button type="submit">Save Note</button>
                         </form>

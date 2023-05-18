@@ -15,13 +15,20 @@ const Notes = () => {
         console.log("Notes fetched: ", notesFetched);
         // console.log(info);
     }, [loginStatus]);
+
+
+    const colorChange = (e) => {
+        console.log(e.target.value);
+        document.documentElement.style.setProperty('--notes-background-color', e.target.value);
+    }
+
     return (
         <div className={classes.top__level}>
             {loginStatus ? 
             <div className={classes.login__true}>
                 <span>My Notes</span>
                 <span>Pick a background color for notes</span>
-                <input type="color" list="presetColors" />
+                <input type="color" list="presetColors" onChange={colorChange}/>
                 <div className={classes.notes__fetched}>
                     {notesFetched?.map((note) => {
                         console.log("Single note: ", note);
