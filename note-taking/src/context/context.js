@@ -24,10 +24,10 @@ const NotesProvider = (props) => {
                 notesList.push(valueReceived);
                 console.log("HERE");
             })
-            console.log("Notes list: ", notesList);
+            // console.log("Notes list: ", notesList);
             setNotesFetched(notesList);
-            console.log("Notes fetched: ", notesFetched);
-        })        
+            // console.log("Notes fetched: ", notesFetched);
+        })
     }
 
     const addNote = async() => {
