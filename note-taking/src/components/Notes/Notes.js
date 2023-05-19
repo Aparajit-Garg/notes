@@ -17,10 +17,14 @@ const Notes = () => {
     }, [loginStatus]);
 
 
-    const deleteNote = (event, key) => {        
-        deleteDoc(doc(db, "notes", key))
-        .then((value)=> fetchNotes())
-        .catch((error) => console.log(error));
+    const deleteNote = (event, key) => {   
+        if (window.confirm("Do you want to delete this note ..?")) {
+            deleteDoc(doc(db, "notes", key))
+            .then((value)=> fetchNotes())
+            .catch((error) => console.log(error));
+        }
+        else
+            console.log("denied");
     }
 
     return (

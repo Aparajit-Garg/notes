@@ -14,7 +14,9 @@ const Home = () => {
     const [loginStatus, setLoginStatus, , , fetchNotes, , loginEmail, setLoginEmail] = useContext(notesContext);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [showEditor, setShowEditor] = useState(false);
 
+    
     useEffect(() => {
         let x = localStorage.getItem("user");
         // console.log("local storage value: ", x);
@@ -69,7 +71,7 @@ const Home = () => {
                         <span>Responsive Design, usable across devices of all sizes</span>
                         <span>Bookmark your Important Notes</span>
                         <span>Pick a Background Color for your notes</span>
-                        <span>
+                        <span style={{display: !loginStatus ? "block" : "none"}}>
                             <Link to="/login" style={{textDecoration:'none', color:'black', fontWeight:'bold'}}>
                                 Sign In to Get Started
                             </Link>
