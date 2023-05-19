@@ -18,12 +18,9 @@ const NotesProvider = (props) => {
         getDocs(q)
         .then(value => {
             value.forEach((doc) => {
-                // console.log(doc.id, "=? ", doc.data());
                 let valueReceived = {};
                 valueReceived[doc.id] = doc.data();
-                // let data = doc.data();
                 notesList.push(valueReceived);
-                console.log("HERE");
             })
             setNotesFetched(notesList);
         })

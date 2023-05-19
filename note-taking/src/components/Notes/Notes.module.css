@@ -119,6 +119,7 @@
     font-weight: 600;
     font-size: 0.8em;
     border-radius: 2px;
+    cursor: pointer;
 }
 
 .noteEdit__options > button:first-child {

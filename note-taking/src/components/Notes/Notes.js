@@ -3,7 +3,8 @@ import classes from './Notes.module.css';
 import { notesContext } from '../../context/context';
 import TurnedIn from "@mui/icons-material/TurnedIn";
 import TurnedInNot from "@mui/icons-material/TurnedInNot";
-import { db, doc, deleteDoc } from '../../firebase_config';
+import { db } from '../../firebase_config';
+import { doc, deleteDoc } from 'firebase/firestore';
 
 
 const Notes = () => {
@@ -13,12 +14,13 @@ const Notes = () => {
     useEffect(() => {
         fetchNotes();
         console.log("Notes fetched: ", notesFetched);
-        // console.log(info);
     }, [loginStatus]);
 
 
-    const deleteNote = (event) => {
-        
+    const deleteNote = (event, key) => {        
+        deleteDoc(doc(db, "notes", key))
+        .then((value)=> fetchNotes())
+        .catch((error) => console.log(error));
     }
 
     return (
@@ -32,13 +34,14 @@ const Notes = () => {
                 <div className={classes.notes__fetched}>
                     {notesFetched?.map((note) => {
                         console.log("Single note: ", note);
-                        let key = Object.keys(note);
+                        let keys = Object.keys(note);
                         let value = Object.values(note);
-                        console.log("Key=> ", key);
+                        console.log("Key=> ", keys);
                         console.log("Value=> ", value);
                         console.log(value[0].title);
+                        console.log("Note id aa bhi rhi hai? : ", keys[0]);
                         return (
-                            <div className={classes.single__note} key={note.id}>
+                            <div className={classes.single__note} key={keys[0]}>
                                 <span>
                                     <h2>{value[0].title}</h2>
                                     {
@@ -53,7 +56,7 @@ const Notes = () => {
                                     <button>
                                         Open Editor
                                     </button>
-                                    <button onClick={() => deleteNote(note.id)}>
+                                    <button onClick={(e)=>deleteNote(e, keys[0])}>
                                         Delete this note
                                     </button>
                                 </span>

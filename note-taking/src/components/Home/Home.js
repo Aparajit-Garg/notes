@@ -19,10 +19,7 @@ const Home = () => {
         let x = localStorage.getItem("user");
         // console.log("local storage value: ", x);
         if (x) {
-            console.log("found the value");
             let found = JSON.parse(x);
-            console.log("FOUND: ", found);
-            console.log("here: ", found["email"]);
             setLoginStatus(true);
             setLoginEmail(found["email"]);
             fetchNotes();
@@ -30,6 +27,13 @@ const Home = () => {
         else
             console.log("Value not found");
     }, [loginStatus]);
+
+
+    const createId = (length, chars) => {
+        var result = '';
+        for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
+        return result;
+    }
 
 
     const submitHandler = async (event) => {
@@ -43,9 +47,10 @@ const Home = () => {
                 createdAt: serverTimestamp(),
                 lastUpdated: serverTimestamp(),
                 bookmarked: false,
-                emailId: loginEmail
+                emailId: loginEmail,
+                noteId: createId(20, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
             });
-            console.log("Status of adding new doc: ", response);
+
             fetchNotes();
             setTitle("");
             setDescription("");
