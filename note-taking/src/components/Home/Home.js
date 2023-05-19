@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useState, useEffect} from "react";
 import classes from "./Home.module.css";
 import {Link} from 'react-router-dom';
 import {ToastContainer, toast} from 'react-toastify';
@@ -11,9 +11,26 @@ import { db } from "../../firebase_config";
 
 const Home = () => {
 
-    const [loginStatus, setLoginStatus, , , fetchNotes, , loginEmail, ] = useContext(notesContext);
+    const [loginStatus, setLoginStatus, , , fetchNotes, , loginEmail, setLoginEmail] = useContext(notesContext);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+
+    useEffect(() => {
+        let x = localStorage.getItem("user");
+        // console.log("local storage value: ", x);
+        if (x) {
+            console.log("found the value");
+            let found = JSON.parse(x);
+            console.log("FOUND: ", found);
+            console.log("here: ", found["email"]);
+            setLoginStatus(true);
+            setLoginEmail(found["email"]);
+            fetchNotes();
+        }
+        else
+            console.log("Value not found");
+    }, [loginStatus]);
+
 
     const submitHandler = async (event) => {
         event.preventDefault();

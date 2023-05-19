@@ -18,7 +18,7 @@ const Notes = () => {
 
 
     const deleteNote = (event) => {
-
+        
     }
 
     return (

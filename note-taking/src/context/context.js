@@ -12,7 +12,7 @@ const NotesProvider = (props) => {
     const collectionRef = collection(db, "notes");
 
     const fetchNotes = async () => {
-        const q = query(collection(db, "notes"), where("emailId", "==", "demo@gmail.com"));
+        const q = query(collection(db, "notes"), where("emailId", "==", loginEmail));
         let notesList = [];
         
         getDocs(q)
@@ -25,9 +25,7 @@ const NotesProvider = (props) => {
                 notesList.push(valueReceived);
                 console.log("HERE");
             })
-            // console.log("Notes list: ", notesList);
             setNotesFetched(notesList);
-            // console.log("Notes fetched: ", notesFetched);
         })
     }
 
