@@ -7,9 +7,8 @@ import { db } from '../../firebase_config';
 import { doc, deleteDoc } from 'firebase/firestore';
 
 
-const Notes = () => {
-    const [loginStatus, setLoginStatus, notesFetched,,fetchNotes,] = useContext(notesContext);
-    const [info, setInfo] = useState([]);
+const Notes = (props) => {
+    const [loginStatus, , notesFetched, ,fetchNotes, , , , , setShowNoteEditor, noteEditorValue, setNoteEditorValue] = useContext(notesContext);
 
     useEffect(() => {
         fetchNotes();
@@ -25,6 +24,15 @@ const Notes = () => {
         }
         else
             console.log("denied");
+    }
+
+    const openEditor = (e, key, value) => {
+        setShowNoteEditor(true);
+        props.setNoteEdited({
+            title: value.title,
+            description: value.description,
+            id: key
+        });
     }
 
     return (
@@ -43,7 +51,6 @@ const Notes = () => {
                         console.log("Key=> ", keys);
                         console.log("Value=> ", value);
                         console.log(value[0].title);
-                        console.log("Note id aa bhi rhi hai? : ", keys[0]);
                         return (
                             <div className={classes.single__note} key={keys[0]}>
                                 <span>
@@ -57,7 +64,8 @@ const Notes = () => {
                                 </span>
                                 <span> {value[0].description}</span>
                                 <span className={classes.noteEdit__options}>
-                                    <button>
+                                    {/* <button onClick={(e) => openEditor(e, )}> */}
+                                    <button onClick={(e) => openEditor(e, keys[0], value[0])}>
                                         Open Editor
                                     </button>
                                     <button onClick={(e)=>deleteNote(e, keys[0])}>

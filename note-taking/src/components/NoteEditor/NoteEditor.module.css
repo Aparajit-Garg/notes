@@ -1,0 +1,48 @@
+.editor {
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    margin: 2rem 1rem;
+    gap: 1rem;
+    /* padding: 1rem 1rem; */
+}
+
+.react__quill_container {
+    height: 16rem;
+}
+
+.react__quill {
+    height: 12rem;
+}
+
+.note__updating {
+    margin: 0rem auto;
+    padding: 1rem;
+    max-width: 600px;
+    /* width: 25rem; */
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: auto;
+    gap: 1em;
+    background-color: #fffacd;
+}
+
+.note__updating > span:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+}
+
+.note__updating > button {
+    all: unset;
+    max-width: 6em;
+    font-weight: 700;
+    padding: 0.5em;
+    font-size: 0.8em;
+    background-color: #add8e6;
+    text-align: center;
+    cursor: pointer;
+}
