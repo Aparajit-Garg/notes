@@ -18,6 +18,8 @@ const Home = () => {
     const [noteEdited, setNoteEdited] = useState({});
     
     useEffect(() => {
+        console.log(typeof(showNoteEditor));
+        console.log("Shownoteeditor in home: ", showNoteEditor);
         let x = localStorage.getItem("user");
         // console.log("local storage value: ", x);
         if (x) {
@@ -28,7 +30,7 @@ const Home = () => {
         }
         else
             console.log("Value not found");
-    }, [loginStatus]);
+    }, [loginStatus, showNoteEditor]);
 
 
     const createId = (length, chars) => {

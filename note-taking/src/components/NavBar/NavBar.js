@@ -19,7 +19,6 @@ const NavBar = () => {
                 </Link>
                 <Link style={{textDecoration:"none"}} to="/login">
                     <span>{loginStatus ? "Log Out" : "Sign In"}</span>
-                    {/* <span>Sign In</span> */}
                 </Link>
             </div>
             

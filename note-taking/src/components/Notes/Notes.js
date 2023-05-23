@@ -5,6 +5,7 @@ import TurnedIn from "@mui/icons-material/TurnedIn";
 import TurnedInNot from "@mui/icons-material/TurnedInNot";
 import { db } from '../../firebase_config';
 import { doc, deleteDoc } from 'firebase/firestore';
+import { removeHTMLTags } from '../../utility';
 
 
 const Notes = (props) => {
@@ -62,7 +63,7 @@ const Notes = (props) => {
                                     }
                                     
                                 </span>
-                                <span> {value[0].description}</span>
+                                <span> {removeHTMLTags(value[0].description)}</span>
                                 <span className={classes.noteEdit__options}>
                                     {/* <button onClick={(e) => openEditor(e, )}> */}
                                     <button onClick={(e) => openEditor(e, keys[0], value[0])}>
