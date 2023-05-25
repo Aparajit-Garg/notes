@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useState} from "react";
 import classes from "./Login.module.css";
 import {signInWithEmailAndPassword, createUserWithEmailAndPassword} from "firebase/auth";
 import {auth} from "../../firebase_config";
@@ -11,7 +11,7 @@ const Login = () => {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [signIn, setToggleSignIn] = useState(false);
-    const [loginStatus, setLoginStatus, , , , , loginEmail, setLoginEmail] = useContext(notesContext);
+    const [loginStatus, setLoginStatus, , , , , , setLoginEmail] = useContext(notesContext);
     
     let navigate = useNavigate();
 
@@ -36,16 +36,15 @@ const Login = () => {
             setLoginStatus(true);
             setLoginEmail(userName);
             navigate("/");
-            localStorage.setItem("user", user);
-            // ...
+            localStorage.setItem("user", JSON.stringify(user));
         })
         .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
+            // const errorCode = error.code;
+            // const errorMessage = error.message;
             console.log(error);
+            alert("Please try again");
             setLoginStatus(false);
             setLoginEmail("");
-            // ..
         });
     }
 
@@ -60,14 +59,16 @@ const Login = () => {
             setLoginEmail(userName);
             navigate("/");
             localStorage.setItem("user", JSON.stringify(user));
-            // ...
         })
         .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
+            // const errorCode = error.code;
+            // const errorMessage = error.message;
+            alert("Please enter correct details");
             console.log(error);
             setLoginStatus(false);
             setLoginEmail("");
+            setPassword("");
+            setUserName("");
         });
     }
 
@@ -96,7 +97,7 @@ const Login = () => {
                         <label>Username</label>
                         <input type="text" placeholder="Enter username" onChange={(e)=> setUserName(e.target.value)} value={userName} />
                         <label>Password</label>
-                        <input type="password" placeholder="Enter password" onChange={(e) => setPassword(e.target.value)}></input>
+                        <input type="password" placeholder="Enter password" onChange={(e) => setPassword(e.target.value)} value={password}></input>
                         <button type="submit"> {signIn ? "Sign In" : "Sign Up"} </button>
                     </form>
                     <div className={classes.signUp}>

@@ -10,7 +10,7 @@ import { db } from '../../firebase_config';
 
 
 const NoteEditor = (props) => {
-    const [, , , , , , , , , setShowNoteEditor] = useContext(notesContext);
+    const [, , , , fetchNotes, , , , , setShowNoteEditor] = useContext(notesContext);
     const [descriptionLocal, setDescriptionLocal] = useState("");
     const [noteId, setNoteId] = useState("");
 
@@ -20,7 +20,7 @@ const NoteEditor = (props) => {
     }, [noteId]);
 
 
-    const updatedDebounce = useDebounce(descriptionLocal, 1500);
+    const updatedDebounce = useDebounce(descriptionLocal, 1000);
     
     useEffect(() => {
         if (updatedDebounce) {
@@ -29,7 +29,10 @@ const NoteEditor = (props) => {
                 description: descriptionLocal,
                 lastUpdated: serverTimestamp()
             })
-            .then(() => console.log("Note updated at server"))
+            .then(() => {
+                fetchNotes();
+                console.log("Note updated at server");
+            })
             .catch((error) => alert("Problem updating note at firebase: ", error));
         }
     }, [updatedDebounce]);
@@ -44,7 +47,6 @@ const NoteEditor = (props) => {
             <span className={classes.note__updating}>
                 <span>
                     <h2>{props.noteEdited.title}</h2>
-                    {/* <div>dangerouslySetInnerHTML={{ __html: descriptionLocal }}</div> */}
                     <p style={{wordWrap:"break-word"}}> {parse(`${descriptionLocal}`)} </p>
                 </span>
                 <button onClick={()=>setShowNoteEditor(false)}>Close Editor</button>
